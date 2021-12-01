@@ -20,22 +20,18 @@ class SpinnerViewModel: ViewModel() {
         val startYear = currentDateTime.get(Calendar.YEAR)
         val startMonth = currentDateTime.get(Calendar.MONTH)
         val startDay = currentDateTime.get(Calendar.DAY_OF_MONTH)
-        val startHour = currentDateTime.get(Calendar.HOUR_OF_DAY)
-        val startMinute = currentDateTime.get(Calendar.MINUTE)
 
         DatePickerDialog(context, { _, year, month, day ->
-            TimePickerDialog(context, { _, hour, minute ->
-                val pickedDateTime = Calendar.getInstance()
-                pickedDateTime.set(year, month, day, hour, minute)
-                val monthStr: String
-                if ((month + 1).toString().length == 1) {
-                    monthStr = "0${month + 1}"
-                } else {
-                    monthStr = month.toString()
-                }
-                time = "$day - $monthStr - $year $hour:$minute"
-                updateDateTime(time)
-            }, startHour, startMinute, false).show()
+            val pickedDateTime = Calendar.getInstance()
+            pickedDateTime.set(year, month, day)
+            val monthStr: String
+            if ((month + 1).toString().length == 1) {
+                monthStr = "0${month + 1}"
+            } else {
+                monthStr = month.toString()
+            }
+            time = "$day - $monthStr - $year "
+            updateDateTime(time)
         }, startYear, startMonth, startDay).show()
     }
 

@@ -62,12 +62,8 @@ fun DateView() {
     val transitionState = remember { MutableTransitionState(expanded).apply {
         targetState = !expanded
     }}
-    val transition = updateTransition(targetState = transitionState, label = "transition")
-    val arrowRotationDegree by transition.animateFloat({
-        tween(durationMillis = 300)
-    }, label = "rotationDegree") {
-        if (expanded) 180f else 0f
-    }
+
+
     val context = LocalContext.current
     val viewModel: SpinnerViewModel = viewModel()
     val dateTime = viewModel.time.observeAsState()
@@ -86,7 +82,7 @@ fun DateView() {
                 .padding(15.dp)
         ) {
             Text(
-                text = "DateTime",
+                text = "Fecha",
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
                 color = Color.White
@@ -103,7 +99,7 @@ fun DateView() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Calender Date ",
+                    text = "Calendario ",
                     fontSize = 20.sp,
                     color = Color.Black,
                     fontWeight = FontWeight.Bold
@@ -120,7 +116,7 @@ fun DateView() {
                         .background(Color.Blue)
                         .padding(5.dp)
                 ) {
-                    Text(text = "Select Date", color = Color.White)
+                    Text(text = "Seleccionar fecha", color = Color.White)
                 }
 
                 Spacer(modifier = Modifier.height(10.dp))
